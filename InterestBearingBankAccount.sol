@@ -19,12 +19,14 @@ contract InterestBearingBankAccount {
         depositTimestamps[msg.sender] = block.timestamp;
     }
     
+    // Get balance of any provided address
     function getBalance(address userAddress) public view returns(uint) {
         uint principal = balances[userAddress];
-        uint timeElapsed = block.timestamp - depositTimestamps[userAddress]; //seconds
-        return principal + uint((principal * 7 * timeElapsed) / (100 * 365 * 24 * 60 * 60)) + 1; //simple interest of 0.07%  per year
+        uint timeElapsed = block.timestamp - depositTimestamps[userAddress]; // Time in Seconds
+        return principal + uint((principal * 10 * timeElapsed) / (100 * 365 * 24 * 60 * 60)); // Simple interest of 0.1%  per year
     }
     
+    // Withdraw All Money in Contract for Sender
     function withdraw() public payable {
         address payable withdrawTo = payable(msg.sender);
         uint amountToTransfer = getBalance(msg.sender);
@@ -33,6 +35,7 @@ contract InterestBearingBankAccount {
         balances[msg.sender] = 0;
     }
     
+    // Add Money to Contract
     function addMoneyToContract() public payable {
         totalContractBalance += msg.value;
     }
