@@ -1,5 +1,4 @@
-# SolidityBank
-## A Basic Personal Interest Bearing Bank Account Using Ethereum
+# SolidityBank - A Basic Personal Interest Bearing Bank Account Using Ethereum
 ![Interest Turning Bullish](https://media.giphy.com/media/G4z05L6SlZsBRyADcB/giphy.gif)
 
 ## Features of the Bank Account
