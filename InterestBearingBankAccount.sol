@@ -50,11 +50,13 @@ contract InterestBearingBankAccount {
     
     // Withdraw All Money in Contract for Sender
     function withdraw() public payable {
-        address payable withdrawTo = payable(msg.sender);
+        //address payable withdrawTo = payable(msg.sender);
         uint amountToTransfer = getBalance(msg.sender);
-        withdrawTo.transfer(amountToTransfer);
+        
+        //withdrawTo.transfer(amountToTransfer);
         totalContractBalance = totalContractBalance - amountToTransfer;
         balances[msg.sender] = 0;
+        ceth.redeem(amountToTransfer);
     }
     
     // Add Money to Contract
