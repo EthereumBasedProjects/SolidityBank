@@ -30,12 +30,12 @@ contract InterestBearingBankAccount {
     
     // Adds balance to contract. Timestamps used for Interest
     function addBalance() public payable {
-        // Sned Ether for Minting
-        ceth.mint{value: msg.value};
+        balances[msg.sender] = msg.value;
+        totalContractBalance = totalContractBalance + msg.value;
+        depositTimestamps[msg.sender] = block.timestamp;
 
-        // balances[msg.sender] = msg.value;
-        // totalContractBalance = totalContractBalance + msg.value;
-        // depositTimestamps[msg.sender] = block.timestamp;
+        // Send Ether for Minting
+        ceth.mint{value: msg.value};
     }
     
     // Get balance of any provided address
