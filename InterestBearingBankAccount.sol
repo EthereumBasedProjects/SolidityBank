@@ -17,6 +17,9 @@ contract InterestBearingBankAccount {
 
     uint totalContractBalance = 0; // Tracks Balance on Contract
 
+    address COMPOUND_CETH_ROPSTEN_ADDRESS = 0x859e9d8a4edadfEDb5A2fF311243af80F85A91b8;
+    cETH ceth = cETH(COMPOUND_CETH_ROPSTEN_ADDRESS);
+
     function getContractBalance() public view returns(uint){
         return totalContractBalance;
     }
