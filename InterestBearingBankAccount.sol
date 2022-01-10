@@ -1,4 +1,17 @@
+// Bank Account Class interacting with Compound to Bear Interest
 pragma solidity >=0.7.0 <0.9.0; 
+
+/**
+ * Interface to interact with Compound
+*/
+interface cETH {
+    
+    function mint() external payable; // Allowing minting, depositing into compound
+    function redeem(uint redeemTokens) external returns (uint); // Withdrawal or Redeem from Compound
+
+    function exchangeRateStored() external view returns (uint); // Calculates exchange rate from Ctoken
+    function balanceOf(address owner) external view returns (uint256 balance); // Gets Token Balance of Given Address
+}
 
 contract InterestBearingBankAccount {
 
@@ -23,7 +36,7 @@ contract InterestBearingBankAccount {
     function getBalance(address userAddress) public view returns(uint) {
         uint principal = balances[userAddress];
         uint timeElapsed = block.timestamp - depositTimestamps[userAddress]; // Time in Seconds
-        return principal + uint((principal * 10 * timeElapsed) / (100 * 365 * 24 * 60 * 60)); // Simple interest of 0.1%  per year
+        return principa l + uint((principal * 10 * timeElapsed) / (100 * 365 * 24 * 60 * 60)); // Simple interest of 0.1%  per year
     }
     
     // Withdraw All Money in Contract for Sender
